@@ -28,3 +28,8 @@ dist-ssr
 .env.development.local
 .env.test.local
 .env.production.local
+# Environment variables in subdirectories
+backend/.env
+backend/.env*
+client/.env
+client/.env*
