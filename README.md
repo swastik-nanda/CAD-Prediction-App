@@ -94,12 +94,11 @@ The backend server will run on `http://localhost:5000`
 cd frontend
 npm start
 ```
-The React app will run on `http://localhost:3000`
+The React app will run on `http://localhost:5173`
 
 ### Run the ML Model (if needed)
 ```bash
 cd model
-python train_model.py  # To train the model
 python predict.py      # To make predictions
 ```
 
