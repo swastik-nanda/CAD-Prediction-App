@@ -46,27 +46,30 @@ const DiabetesForm = () => {
 
     setIsLoading(true);
     try {
-      const response = await fetch("http://127.0.0.1:5000/predict", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          age: Number(formData.age),
-          sex: Number(formData.sex),
-          cp: Number(formData.cp),
-          trestbps: Number(formData.trestbps),
-          chol: Number(formData.chol),
-          fbs: Number(formData.fbs),
-          restecg: Number(formData.restecg),
-          thalach: Number(formData.thalach),
-          exang: Number(formData.exang),
-          oldpeak: Number(formData.oldpeak),
-          slope: Number(formData.slope),
-          ca: Number(formData.ca),
-          thal: Number(formData.thal),
-        }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_MODEL_API_URL}/predict`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            age: Number(formData.age),
+            sex: Number(formData.sex),
+            cp: Number(formData.cp),
+            trestbps: Number(formData.trestbps),
+            chol: Number(formData.chol),
+            fbs: Number(formData.fbs),
+            restecg: Number(formData.restecg),
+            thalach: Number(formData.thalach),
+            exang: Number(formData.exang),
+            oldpeak: Number(formData.oldpeak),
+            slope: Number(formData.slope),
+            ca: Number(formData.ca),
+            thal: Number(formData.thal),
+          }),
+        }
+      );
 
       const resultData = await response.json();
       setResult(resultData.prediction); // 1 or 0
