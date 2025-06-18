@@ -84,7 +84,7 @@ const ResultDisplay = ({ result, onReset }) => {
         <div className="mt-6 flex justify-center">
           <button
             onClick={onReset}
-            className="flex items-center cursor-pointer px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-300"
+            className="flex hover:scale-105 transition-all duration-300 items-center cursor-pointer px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
           >
             <ArrowLeft size={16} className="mr-2" />
             Start New Assessment

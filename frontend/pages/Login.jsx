@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { EyeIcon, EyeOffIcon, Mail, Lock } from "lucide-react";
-import DashboardHeader from "../components/DashboardComponents/DashboardHeader";
+import Header from "../components/Header";
+import { useAuth } from "../context/AuthContext";
 
 export default function LoginPage() {
-  const navigate = useNavigate(); // <-- ADD this hook
+  const navigate = useNavigate();
+  const { login } = useAuth(); // <-- 2. Get login from context
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
 
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,9 +35,8 @@ export default function LoginPage() {
       const data = await res.json();
 
       if (res.ok) {
-        // ✅ Save token and user to localStorage
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.result));
+        // ✅ Use context login function instead of localStorage directly
+        login(data.result, data.token); // <-- 3. Update context and localStorage
 
         setLoading(false);
         navigate("/dashboard");
@@ -50,30 +50,9 @@ export default function LoginPage() {
     }
   };
 
-  if (loggedIn) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 to-blue-600 p-4">
-        <div className="bg-white rounded-xl shadow-2xl w-full max-w-md p-8">
-          <h2 className="text-2xl font-bold text-gray-800 text-center">
-            Welcome Back!
-          </h2>
-          <p className="text-gray-600 text-center mt-2">
-            You are now logged in as {formData.email}
-          </p>
-          <button
-            className="mt-6 w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors"
-            onClick={() => setLoggedIn(false)}
-          >
-            Logout
-          </button>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <>
-      <DashboardHeader></DashboardHeader>
+      <Header></Header>
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 to-blue-600 p-4">
         <div className="bg-white rounded-xl shadow-2xl w-full max-w-md overflow-hidden">
           <div className="p-8 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">

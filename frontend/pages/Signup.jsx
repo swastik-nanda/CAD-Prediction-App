@@ -1,12 +1,14 @@
 import { useState } from "react";
-
 import SuccessSignupUI from "../components/SignupComponents/SuccessSignupUI";
 import SignupHeader from "../components/SignupComponents/SignupHeader";
 import SignupFormStepDetail from "../components/SignupComponents/SignupFormStepDetail";
 import SignupForm from "../components/SignupComponents/SignupForm";
-import DashboardHeader from "../components/DashboardComponents/DashboardHeader";
+import Header from "../components/Header";
+import { useAuth } from "../context/AuthContext"; // <-- 1. Import useAuth
 
 export default function SignupPage() {
+  const { login } = useAuth(); // <-- 2. Get login from context
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -18,7 +20,7 @@ export default function SignupPage() {
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleSignup = async () => {
     const { fullName, email, password } = formData;
@@ -39,8 +41,9 @@ export default function SignupPage() {
       const data = await res.json();
       console.log("Signup successful:", data);
 
-      // ✅ Store token in localStorage
-      localStorage.setItem("token", data.token);
+      // ✅ Use AuthContext's login to update context and localStorage
+      // Adjust this line if your backend returns a different structure
+      login(data.result, data.token);
 
       setSubmitted(true);
     } catch (error) {
@@ -76,7 +79,6 @@ export default function SignupPage() {
       // No need to setSubmitted(true) here, it's done inside handleSignup
     } catch (error) {
       console.error("Signup failed:", error);
-      // Optionally handle error (e.g., show a message)
     } finally {
       setLoading(false);
     }
@@ -113,26 +115,20 @@ export default function SignupPage() {
   };
 
   if (submitted) {
-    return (
-      <SuccessSignupUI
-        formData={formData}
-        setSubmitted={setSubmitted}
-      ></SuccessSignupUI>
-    );
+    return <SuccessSignupUI formData={formData} setSubmitted={setSubmitted} />;
   }
 
   return (
     <>
-      <DashboardHeader></DashboardHeader>
+      <Header />
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 to-blue-600 p-4">
         <div className="bg-white rounded-xl shadow-2xl w-full max-w-md overflow-hidden transform transition-all">
           {/* Header */}
-          <SignupHeader></SignupHeader>
+          <SignupHeader />
 
           {/* Form */}
           <div className="p-8">
-            <SignupFormStepDetail step={step}></SignupFormStepDetail>
-
+            <SignupFormStepDetail step={step} />
             <SignupForm
               handleChange={handleChange}
               loading={loading}
@@ -144,7 +140,7 @@ export default function SignupPage() {
               formData={formData}
               step={step}
               handleSubmit={handleSubmit}
-            ></SignupForm>
+            />
           </div>
         </div>
       </div>

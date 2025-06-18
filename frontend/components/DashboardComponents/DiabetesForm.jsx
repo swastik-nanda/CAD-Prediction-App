@@ -295,7 +295,7 @@ const DiabetesForm = () => {
             <div className="mt-6 text-center">
               <button
                 type="submit"
-                className="bg-blue-600 cursor-pointer text-white px-6 py-2 rounded hover:bg-blue-700 transition"
+                className="bg-blue-600 cursor-pointer hover:scale-105 transition-all duration-300 text-white px-6 py-2 rounded hover:bg-blue-700"
                 disabled={isLoading}
               >
                 {isLoading ? "Predicting..." : "Get Prediction"}

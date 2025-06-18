@@ -34,7 +34,7 @@ function DashboardHeader() {
           {isLoggedIn && (
             <button
               onClick={handleLogout}
-              className="flex cursor-pointer items-center space-x-1 bg-white text-blue-700 px-3 py-1 rounded-md hover:bg-blue-100 transition"
+              className="flex cursor-pointer hover:scale-105 transition-all duration-300 items-center space-x-1 bg-white text-blue-700 px-3 py-1 rounded-md hover:bg-blue-100"
             >
               <LogOut size={16} />
               <span className="text-sm font-semibold">Logout</span>
