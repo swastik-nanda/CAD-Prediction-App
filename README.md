@@ -200,6 +200,40 @@ This application is designed for educational and informational purposes only. It
 
 ## 📸 Screenshots
 
+### Main Dashboard
+<img width="1894" height="1029" alt="Heart Disease Risk Assessment Dashboard" src="https://github.com/user-attachments/assets/5e919def-bde5-44c6-9dc6-e93ee3d115c8" />
+
+*Heart Disease Risk Assessment main interface with input form*
+
+### Risk Assessment Form
+<img width="1899" height="1029" alt="Risk Assessment Form" src="https://github.com/user-attachments/assets/3a0cc75b-ae00-4a32-ada5-15cbe5144a54" />
+
+*Comprehensive health data input form with all cardiac parameters*
+
+### High Risk Result
+<img width="764" height="696" alt="High Risk Result" src="https://github.com/user-attachments/assets/108eda55-ce54-4305-9073-f7673c5363a2" />
+
+*High risk prediction result with detailed recommendations*
+
+### Low Risk Result
+<img width="1227" height="860" alt="Low Risk Result" src="https://github.com/user-attachments/assets/25be34c2-0362-40a5-882e-8424f89d0fd2" />
+
+*Low risk prediction result with preventive care suggestions*
+
+### Educational Information Section
+<img width="1901" height="1031" alt="Educational Information" src="https://github.com/user-attachments/assets/47bd29a1-9078-4b80-8950-5a02a7742395" />
+
+*Comprehensive information about coronary artery disease*
+
+### Risk Factors & Prevention Tips
+<img width="1898" height="821" alt="Risk Factors and Prevention" src="https://github.com/user-attachments/assets/3970d525-db63-434c-ac46-51b41bd5ec00" />
+
+*Detailed risk factors and heart-healthy prevention guidelines*
+
+### Application Interface Overview
+<img width="1899" height="1022" alt="Application Overview" src="https://github.com/user-attachments/assets/fbcb3eac-7ca0-4ea4-9185-9beb8ce1e64b" />
+
+*Complete application interface showing all features and components*
 
 ## 📞 Support & Contact
 
